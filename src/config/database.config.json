@@ -1,6 +1,6 @@
 {
     "development": {
-        "database": "postgres",
+        "database": "QLNV",
         "username": "postgres",
         "password": "123",
         "config": {
