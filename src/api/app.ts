@@ -29,6 +29,6 @@ import { AboutRouter } from './routes/about.router'
 
 // import router
 
-app.use('/log', new LogRouter().GetRouter())
+app.use('/api', new LogRouter().GetRouter())
 app.use('/',new AboutRouter().GetRouter())
 export default app;

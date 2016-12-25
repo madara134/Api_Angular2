@@ -7,11 +7,11 @@ import { LogRepo } from '../repositories/log.repo';
 
 export class LogRouter {
 
-    private router: Router;
+    private router: Router; // phải viết
     private logrepo: LogRepo;
 
     constructor() {
-        this.router = Router();
+        this.router = Router(); // phải viết
         this.logrepo = new LogRepo();
     }
 
@@ -19,9 +19,9 @@ export class LogRouter {
      * GetRouter
      */
     public GetRouter(): Router {
-        this.router.route('/')
+        this.router.route('/user')
             .get(this.GetLogByName)
-            .post(this.Log);
+            .post();
         return this.router;
     }
 
@@ -29,6 +29,7 @@ export class LogRouter {
     private Get(req: Request, res: Response) {
         return res.sendStatus(200)
     }
+
     private Log = (req: Request, res: Response) => {
         console.log(req.body)
         this.logrepo.InsertOne(req.body)
@@ -47,7 +48,7 @@ export class LogRouter {
      * Ngày mặc định là new Date().GetDate()
      */
     private GetLogByName = (req: Request, res: Response) => {
-        this.logrepo.GetListbyName(req.query)
+        this.logrepo.GetListbyName()
             .then(result => res.status(200).json(result))
             .catch(err => res.sendStatus(400))
     }

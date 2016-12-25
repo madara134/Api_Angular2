@@ -1,8 +1,8 @@
 import { RepoBase } from './repositories.base';
 import { Pool, QueryResult } from 'pg';
+import { User } from '../models/log-model'
 
 export class LogRepo extends RepoBase {
-
     constructor() {
         super();
     }
@@ -10,22 +10,12 @@ export class LogRepo extends RepoBase {
      * InsertOne
      */
     public InsertOne(option): Promise<any> {
-        let date = new Date();
-
-        let query = `INSERT INTO public."Log"(
-	"NgayTao", "TextLog", "Platform", "UngDung","TieuDeLog")
-	VALUES ('${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}', 
-    '${option.TextLog}', 
-    '${option.Platform}',
-    '${option.UngDung}',
-    '${option.TieuDeLog}'
-    );`;
-
-
+        let query = `INSERT INTO public."User"("IDUser","TaiKhoan", "Password")
+	                VALUES (${4},'${option.TaiKhoan}', '${option.Password}')`;
         return this._pgPool.query(query)
             .then(result => {
                 // return console.log(`Đã Insert`)
-                return
+                return;
             })
             .catch(err => {
                 // return console.log(err)
@@ -33,17 +23,19 @@ export class LogRepo extends RepoBase {
             })
     }
 
-    public GetListbyName(option): Promise<any> {
-        let limit = option.limit ? option.limit : 100;
-        let offset = option.offset ? option.offset : 0;
-        let date = option.NgayTao ? option.NgayTao : new Date().getDate()
-        let TieuDeLog = option.TieuDeLog ? option.TieuDeLog : null
-        let query = ` SELECT *
-                        FROM public."Log"
-                        WHERE  lower("TieuDeLog") like lower('%${TieuDeLog}%') AND date_part('day', public."Log"."NgayTao") = ${date}
-                        Limit ${limit} offset ${offset}`
+    public GetListbyName(option?): Promise<User[]> {
+        let query = ` SELECT * FROM public."User" `
+
         return this._pgPool.query(query)
-            .then(result => Promise.resolve(result.rows))
-            .catch(err => Promise.reject(err))
+            .then(result => {
+                let users: User[] = result.rows.map(x => {
+                    let user: User = new User();
+                    user.TaiKhoan = x.TaiKhoan;
+                    user.Password = x.Password;
+                    return user;
+                })
+                return users;
+            })
+            .catch(err => console.log(err))
     }
 }
