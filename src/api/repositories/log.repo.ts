@@ -23,10 +23,23 @@ export class LogRepo extends RepoBase {
             })
     }
 
+<<<<<<< HEAD
     public GetListbyName(option?): Promise<User[]> {
         //Hello
         let query = ` SELECT * FROM public."User" `
 
+=======
+    public GetListbyName(option): Promise<any> {
+        //hello Thanh
+        let limit = option.limit ? option.limit : 100;
+        let offset = option.offset ? option.offset : 0;
+        let date = option.NgayTao ? option.NgayTao : new Date().getDate()
+        let TieuDeLog = option.TieuDeLog ? option.TieuDeLog : null
+        let query = ` SELECT *
+                        FROM public."Log"
+                        WHERE  lower("TieuDeLog") like lower('%${TieuDeLog}%') AND date_part('day', public."Log"."NgayTao") = ${date}
+                        Limit ${limit} offset ${offset}`
+>>>>>>> nghia-f-themnv
         return this._pgPool.query(query)
             .then(result => {
                 let users: User[] = result.rows.map(x => {
