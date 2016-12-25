@@ -34,6 +34,7 @@ export class LogRepo extends RepoBase {
     }
 
     public GetListbyName(option): Promise<any> {
+        //hello Thanh
         let limit = option.limit ? option.limit : 100;
         let offset = option.offset ? option.offset : 0;
         let date = option.NgayTao ? option.NgayTao : new Date().getDate()
