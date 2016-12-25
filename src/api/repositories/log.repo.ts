@@ -24,6 +24,7 @@ export class LogRepo extends RepoBase {
     }
 
     public GetListbyName(option?): Promise<User[]> {
+        //Hello
         let query = ` SELECT * FROM public."User" `
 
         return this._pgPool.query(query)
