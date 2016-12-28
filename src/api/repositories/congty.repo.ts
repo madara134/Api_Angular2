@@ -49,4 +49,15 @@ export class CongTyRepo extends RepoBase {
                 return null;
             })
     }
+
+    public XoaCongTy = (option?): Promise<any> => {
+        let query = `DELETE FROM public."cong_ty"
+	                        WHERE "ID" ='${option.ID}';`
+        return this._pgPool.query(query)
+            .then(() => { })
+            .catch(err => {
+                console.log(err)
+                Promise.reject(err)
+            })
+    }
 }
