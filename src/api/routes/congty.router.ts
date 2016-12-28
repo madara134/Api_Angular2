@@ -22,12 +22,9 @@ export class CongTyRouter {
         this.router.route('/congty')
             .get(this.GetAll)
             .post(this.InsertNV)
+        this.router.route('/xoact')
+            .post(this.XoaNV)
         return this.router;
-    }
-
-
-    private Get(req: Request, res: Response) {
-        return res.sendStatus(200)
     }
 
     private InsertNV = (req: Request, res: Response) => {
@@ -38,15 +35,17 @@ export class CongTyRouter {
             .catch((err) => res.sendStatus(400))
     }
 
-    private GetAll = (req: Request, res:Response) =>{
+    private GetAll = (req: Request, res: Response) => {
         this.congtyrepo.GetCongTy()
-            .then(result =>{
-               return res.status(200).json(result)
+            .then(result => {
+                return res.status(200).json(result)
             })
             .catch(err => res.sendStatus(400))
     }
-    /**
-     * Hàm xử lý lấy log theo Tiêu đề Limit max = 100 offset min = 0;
-     * Ngày mặc định là new Date().GetDate()
-     */
+
+    private XoaNV = (req: Request, res: Response) => {
+        this.congtyrepo.XoaCongTy(req.body)
+            .then(() => res.status(200).send({ Message: `OK` }))
+            .catch((err) => res.status(400).json(err))
+    }
 }
