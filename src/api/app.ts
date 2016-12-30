@@ -25,10 +25,12 @@ app.use(function (req, res, next) {
 
 import { LogRouter } from './routes/log.router'
 import { AboutRouter } from './routes/about.router'
+import {NhanVienRouter} from './routes/nhanvien.router'
 // sử dụng các router được định nghĩa từ các modules
 
 // import router
 
 app.use('/log', new LogRouter().GetRouter())
 app.use('/',new AboutRouter().GetRouter())
+app.use('/api', new NhanVienRouter().GetRouter())
 export default app;
