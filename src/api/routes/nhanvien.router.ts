@@ -17,6 +17,8 @@ export class NhanVienRouter {
     public GetRouter (): Router {
         this.router.route('/nhanvien')
             .get(this.GetAll)
+            .post(this.InsertNV)
+            .delete(this.XoaNV)
         return this.router;
     }
 
@@ -29,6 +31,18 @@ export class NhanVienRouter {
                  console.error(error.message);
                 res.status(500).send(error.message)
             })
+    }
+    private InsertNV = (req: Request, res: Response) => {
+        this.nhanvienrepo.InsertOne(req.body)
+            .then(() => {
+                res.status(200).json({ Message: `Thanh Cong` })
+            })
+            .catch((err) => res.sendStatus(400))
+    }
+    private XoaNV = (req: Request, res: Response) => {
+        this.nhanvienrepo.Xoa(req.body)
+            .then(() => res.status(200).send({ Message: `OK` }))
+            .catch((err) => res.status(400).json(err))
     }
             
 }

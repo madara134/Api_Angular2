@@ -51,4 +51,23 @@ export class NhanVienRepo extends RepoBase {
                 return null;
             });
     }
+     InsertOne(NV: NhanVien): Promise<NhanVien> {
+        let queryText = `INSERT INTO public.nhan_vien ("Ho_Ten", "Ngay_Sinh", "CMND", "Muc_Luong", "Dia_Chi", "ID_DV", "ID")
+	VALUES ($1, $2, $3, $4, $5, 1,5);`
+        console.log('Add api: ' + JSON.stringify(NV))
+
+        return this._pgPool.query(queryText, [NV.Ho_Ten, NV.Ngay_Sinh,NV.CMND,NV.Muc_Luong,NV.Dia_Chi])
+            .then(result => NV)
+            .catch(error => Promise.reject(error));
+    }
+    Xoa = (NV?): Promise<any> => {
+        let query = `DELETE FROM public.nhan_vien
+	                        WHERE "ID" ='${NV.ID}';`
+        return this._pgPool.query(query)
+            .then(() => { })
+            .catch(err => {
+                console.log(err)
+                Promise.reject(err)
+            })
+    }
 }
