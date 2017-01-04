@@ -14,7 +14,6 @@ export class CongTyRepo extends RepoBase {
         let query = `INSERT INTO public."cong_ty"(
 	                    "Ten", "Dien_Thoai", "Dia_Chi", "Tuoi_Toi_Thieu", "Tuoi_Toi_Da")
 	                    VALUES ('${option.HoTen}', '${option.SDT}', '${option.DC}',${option.TuoiMax},${option.TuoiMin})`;
-
         return this._pgPool.query(query)
             .then(result => {
                 // return console.log(`Đã Insert`)
