@@ -1,3 +1,4 @@
+
 export class CongTy {
     id: number;
     Ten?:string;
