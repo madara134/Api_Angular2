@@ -1,8 +1,8 @@
 {
     "development": {
-        "database": "QLNV",
+        "database": "postgres",
         "username": "postgres",
-        "password": "123",
+        "password": "nhocgapro2011",
         "config": {
             "dialect": "postgres",
             "define": {

@@ -24,11 +24,13 @@ app.use(function (req, res, next) {
 // import router
 
 import { CongTyRouter } from './routes/congty.router'
+import { NNDRouter } from './routes/nhomnguoidung.router'
 import { AboutRouter } from './routes/about.router'
 // sử dụng các router được định nghĩa từ các modules
 
 // import router
 
 app.use('/api', new CongTyRouter().GetRouter())
+app.use('/api', new NNDRouter().GetRouter())
 app.use('/', new AboutRouter().GetRouter())
 export default app;
