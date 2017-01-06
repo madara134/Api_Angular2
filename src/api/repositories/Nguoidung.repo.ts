@@ -13,8 +13,8 @@ export class NDRepo extends RepoBase {
     public InsertND(option: ND): Promise<any> {
         let query = `INSERT INTO public."nguoi_dung"(
 	                    "Ten_ND", "Mau_Khau", "Mo_rong", "ID_NND")
-	                    VALUES ('${option.Ten_ND}', ${option.Mau_Khau}, '${option.Mo_rong}', '${option.ID_NND}')`;
-
+	                    VALUES ('${option.Ten_ND}', '${option.Mau_Khau}', '${option.Mo_rong}', '${option.ID_NND}')`;
+        console.log(query)        
         return this._pgPool.query(query)
             .then(result => {
                 return console.log(`Đã Insert`)
@@ -22,6 +22,7 @@ export class NDRepo extends RepoBase {
                 // return;
             })
             .catch(err => {
+                console.log(err)
                 return Promise.reject(err)
             })
     }

@@ -8,5 +8,5 @@ export class ND {
     Ten_ND?:string;
     Mau_Khau?:string;    
     Mo_rong?:string;
-    ID_NND?:string;
+    ID_NND?:number;
 }
