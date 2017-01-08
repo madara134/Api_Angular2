@@ -27,21 +27,13 @@ export class ND_loginRepo extends RepoBase {
             })
     }
     */
-    public NDlogin = (option: ND): Promise<ND[]> => {
-           let query = `SELECT public."nguoi_dung".Mau_Khau FROM public."nguoi_dung" WHERE
-            public."nguoi_dung".Ten_ND= '${option.Ten_ND}' `;
+    public NDlogin = (option: ND): Promise<any> => {
+        let query = `SELECT  exists  (SELECT 1 FROM public."nguoi_dung" WHERE "Ten_ND" = '${option.Ten_ND}' AND 
+           "Mau_Khau" = '${option.Mau_Khau}' LIMIT 1)  `;
         return this._pgPool.query(query)
             .then(result => {
-                let NDS: ND[] = result.rows.map(r => {
-                    let ct = new ND();
-                    ct.ID_ND = r.ID_ND;
-                    ct.Ten_ND = r.Ten_ND;
-                    ct.Mau_Khau = r.Mau_Khau;
-                    ct.Mo_rong=r.Mo_rong;
-                    ct.ID_NND=r.ID_NND;                   
-                    return ct;
-                })
-                return NDS;
+                console.log(result.rows[0])
+                return result.rows[0].exists ? 1 : -1
             })
             .catch(err => {
                 console.log(err)
@@ -49,8 +41,8 @@ export class ND_loginRepo extends RepoBase {
             })
     }
 
-    
-   
 
-    
+
+
+
 }

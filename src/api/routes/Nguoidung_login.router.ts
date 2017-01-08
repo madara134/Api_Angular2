@@ -27,6 +27,7 @@ export class ND_loginRouter {
     private NDLogin = (req: Request, res: Response) => {
         this.NDlogin.NDlogin(req.body)
             .then(result => {
+                console.log(result)
                 return res.status(200).json(result)
             })
             .catch(err => res.sendStatus(400))
