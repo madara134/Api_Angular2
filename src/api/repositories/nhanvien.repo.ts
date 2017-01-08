@@ -46,14 +46,14 @@ export class NhanVienRepo extends RepoBase {
             .then(result => NV)
             .catch(error => Promise.reject(error));
     }
-    Xoa = (NV?): Promise<any> => {
-        let query = `DELETE FROM public.nhan_vien
-	                        WHERE "ID" ='${NV.ID}';`
-        return this._pgPool.query(query)
-            .then(() => { })
-            .catch(err => {
-                console.log(err)
-                Promise.reject(err)
-            })
-    }
+    // Xoa = (NV?): Promise<any> => {
+    //     let query = `DELETE FROM public.nhan_vien
+	//                         WHERE "ID" ='${NV.ID}';`
+    //     return this._pgPool.query(query)
+    //         .then(() => { })
+    //         .catch(err => {
+    //             console.log(err)
+    //             Promise.reject(err)
+    //         })
+    // }
 }
