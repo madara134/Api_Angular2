@@ -8,3 +8,7 @@ export class NhanVien {
     ID_DV:number;
     ID:number
 }
+export class LCV{
+    id: number;
+    Ten_CV: string;
+}
