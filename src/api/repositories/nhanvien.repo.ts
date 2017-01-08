@@ -7,20 +7,6 @@ export class NhanVienRepo extends RepoBase {
     constructor() {
         super();
     }
-    // public InsertOne(option): Promise<any> {
-    //     // let date = new Date();
-    //     let query = `INSERT INTO public.nhan_vien("Ho_Ten", "Ngay_Sinh", "CMND", "Muc_Luong", "Dia_Chi", "ID_DV", "ID")
-	// VALUES ('${option.Ho_Ten}', '${option.Ngay_Sinh}', '${option.CMND}','${option.Muc_Luong}','${option.Dia_Chi}','${option.ID_DV}','${option.ID}')`; 
-    //     return this._pgPool.query(query)
-    //         .then(result => {
-    //             // return console.log(`Đã Insert`)
-    //             return
-    //         })
-    //         .catch(err => {
-    //             // return console.log(err)
-    //             return;
-    //         })
-    // }
     public GetNhanVien(option): Promise<NhanVien[]> {
         let queryText = 'SELECT * FROM public.nhan_vien ORDER BY "ID_Nhan_Vien" ASC';
         console.info('Excute: ' + queryText);
