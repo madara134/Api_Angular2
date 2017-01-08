@@ -2,7 +2,7 @@
     "development": {
         "database": "QLNV",
         "username": "postgres",
-        "password": "123",
+        "password": "123456",
         "config": {
             "dialect": "postgres",
             "define": {
@@ -13,13 +13,13 @@
         "host": "localhost",
         "port": 5432,
         "ssl": false,
-        "pool":{
+        "pool": {
             "max": 20,
             "min": 4
         },
         "idleTimeoutMillis": 2000,
         "schema": "public"
-        
+
     },
     "test": {
         "database": "travis_ci_test",
@@ -35,7 +35,7 @@
         "host": "localhost",
         "port": 5432,
         "ssl": false,
-        "pool":{
+        "pool": {
             "max": 20,
             "min": 4
         },
